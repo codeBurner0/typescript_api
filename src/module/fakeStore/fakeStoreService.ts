@@ -27,15 +27,17 @@ const getSingleItemService = async (req: Request, res: Response) => {
     const id = req.params.id;
     const { error } = idSchema.validate(id);
     if (error) {
-      return res.status(400).json({ msg: "error.details[0].message", data: [] });
+      return res
+        .status(400)
+        .json({ msg: "error.details[0].message", data: [] });
     }
-    console.log(id)
+    console.log(id);
     const result = await FakeStore.findById(id);
-    console.log(result)
+    console.log(result);
     res.status(201).json({ msg: "item create successfully", data: result });
   } catch (err: any) {
     res.status(500).json({ msg: "err.message", data: [] });
   }
 };
 
-export { createItemService,getSingleItemService };
+export { createItemService, getSingleItemService };
