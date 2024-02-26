@@ -1,0 +1,6 @@
+npm init --y
+sudo apt i node-typescript
+tsc --init
+npm i @types/node
+npm i @types/express
+ngrock --alag
