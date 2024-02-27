@@ -1,14 +1,14 @@
 import express, { Request, Response } from "express";
 import connectDB from "./connection/connectDB";
-import dotenv from 'dotenv'
-import fakeStoreRoute from './module/fakeStore/fakeStoreRoute'
+import dotenv from "dotenv";
+import productRoute from "./module/fakeStore/productRoute";
 const app: express.Application = express();
 
-dotenv.config()
+dotenv.config();
 
 const PORT: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
-app.use('/fake',fakeStoreRoute)
+app.use("/fake", productRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
