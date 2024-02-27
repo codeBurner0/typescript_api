@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const itemSchema = Joi.object({
+const productSchema = Joi.object({
   title: Joi.string().required(),
   price: Joi.number().required(),
   description: Joi.string().required(),
@@ -12,4 +12,7 @@ const idSchema = Joi.string()
   .regex(/^[0-9a-fA-F]{24}$/)
   .required();
 
-export { itemSchema, idSchema };
+const numberValidateSchema = Joi.number().required();
+const stringValidateSchema = Joi.string().required();
+
+export { productSchema, idSchema, numberValidateSchema, stringValidateSchema };

@@ -1,5 +1,5 @@
 import mongoose, { Schema, Model } from "mongoose";
-import { FakeStoreInterface } from "./fakeStoreInterface";
+import { FakeStoreInterface } from "./productInterface";
 
 interface FakeStoreDocument extends FakeStoreInterface {}
 
