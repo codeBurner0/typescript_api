@@ -1,19 +1,24 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import {
-  createProductController,
+  addProductController,
+  deleteProductController,
   getAllCategoryController,
-  getItemByCategoryController,
+  getProductByCategoryController,
   getSingleProductController,
   limitResultController,
   sortController,
   updateItemController,
 } from "./productContoller";
+
 import {
   validateCreateProductRequest,
   validateIdRequest,
   validateLimitRequest,
-} from "../../middleware/joiValidation";
+  validateSortValRequest,
+  validateCategoryRequest,
+  validateUpdateProductRequest,
+} from "../../middleware/product.joiValidation";
 
 const router = express.Router();
 
@@ -26,7 +31,7 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 // POST API ENDPOINT
-router.post("/", validateCreateProductRequest, createProductController);
+router.post("/", validateCreateProductRequest, addProductController);
 
 // GET SINGLE ITEM API ENDPOINT
 router.get("/product/:id", validateIdRequest, getSingleProductController);
@@ -34,18 +39,23 @@ router.get("/product/:id", validateIdRequest, getSingleProductController);
 // GET SINGLE ITEM API ENDPOINT
 router.get("/limit/:limit", validateLimitRequest, limitResultController);
 
-// GET SINGLE ITEM API ENDPOINT
-router.get("/sort/:sort", sortController);
+// SORT ITEMS API ENDPOINT
+router.get("/sort/:sortVal", validateSortValRequest, sortController);
 
 // GET ALL CATEGORIES ENDPOINT
 router.get("/cate", getAllCategoryController);
 
 // GET ALL CATEGORIES ENDPOINT
-router.get("/cate/:cat", getItemByCategoryController);
+router.get(
+  "/cate/:cat",
+  validateCategoryRequest,
+  getProductByCategoryController
+);
 
 // UPDTATE ITEMS ENDPOINT
-router.put("/:id", updateItemController);
+router.put("/:id", validateUpdateProductRequest, updateItemController);
+
+// UPDTATE ITEMS ENDPOINT
+router.delete("/:id", validateIdRequest, deleteProductController);
 
 export default router;
-
-//joi

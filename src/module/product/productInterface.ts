@@ -1,7 +1,6 @@
 
 import {Document} from 'mongoose'
 interface FakeStoreInterface  extends Document{
-  id: number;
   title: string;
   price: number;
   description: string;
@@ -9,7 +8,7 @@ interface FakeStoreInterface  extends Document{
   image: string;
 }
 
-interface createProductInterface{
+interface addProductInterface{
   title:string,
   price:number,
   description:string,
@@ -17,4 +16,4 @@ interface createProductInterface{
   category:string
 }
 
-export { FakeStoreInterface, createProductInterface };
+export { FakeStoreInterface, addProductInterface };
