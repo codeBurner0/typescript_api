@@ -1,0 +1,15 @@
+{"level":"info","message":"Method: GET, Path: /cart/65e02c4e26b81c36778a3567, Status:200"}
+{"level":"info","message":"Method: PUT, Path: /cart/65e0299526b81c36778a3564, Status:200"}
+{"level":"info","message":"Method: PUT, Path: /cart/65e0299526b81c36778a3564, Status:200"}
+{"level":"info","message":"Method: PUT, Path: /cart/65e0299526b81c36778a3564, Status:200"}
+{"level":"info","message":"Method: PUT, Path: /cart/65e0299526b81c36778a3564, Status:200"}
+{"level":"info","message":"Method: PUT, Path: /cart/65e0299526b81c36778a3564, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart/user, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart/dates, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart/dates, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart/dates, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart/dates, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart/dates, Status:200"}
+{"level":"info","message":"Method: GET, Path: /cart, Status:200"}
+{"level":"info","message":"Method: POST, Path: /cart, Status:200"}
+{"level":"info","message":"Method: POST, Path: /cart, Status:200"}

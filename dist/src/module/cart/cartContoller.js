@@ -19,7 +19,6 @@ exports.addCartController = addCartController;
 // GET ALL CARTS CONTROLLER
 const getAllCartController = async (req, res) => {
     try {
-        console.log("hii");
         const cart = await cartService_1.getAllCartService();
         return res
             .status(200)
@@ -48,7 +47,6 @@ exports.getSingleCartController = getSingleCartController;
 // GET USER CARTS CONTROLLER
 const getUserCartsController = async (req, res) => {
     try {
-        console.log("hii");
         const id = req.userId;
         console.log(id);
         const cart = await cartService_1.getUserCartsService(id);

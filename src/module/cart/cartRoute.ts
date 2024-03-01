@@ -20,11 +20,12 @@ import {
 
 // import { validateCreateProductRequest } from "../../middleware/product.joiValidation";
 import { authMiddleware } from "../../middleware/auth";
-
+import rateLimit from "../../middleware/rateLimit";
 const router = express.Router();
 
 router.use(express.json());
 router.use(cors());
+router.use(rateLimit);
 router.use(authMiddleware);
 
 // TESTING ROUTE

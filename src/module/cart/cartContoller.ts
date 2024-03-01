@@ -35,7 +35,6 @@ const getAllCartController = async (
   res: Response
 ): Promise<Response> => {
   try {
-    console.log("hii");
     const cart: ICart[] | null = await getAllCartService();
     return res
       .status(200)
@@ -68,10 +67,8 @@ const getUserCartsController = async (
   res: Response
 ): Promise<Response> => {
   try {
-    console.log("hii");
     const id: string = req.userId;
-    console.log(id);
-    const cart = await getUserCartsService(id);
+    const cart: ICart[] | null = await getUserCartsService(id);
     if (!cart) {
       return res.status(200).json({ msg: "no cart found", data: cart });
     }
@@ -88,7 +85,7 @@ const limitCartResultController = async (
 ): Promise<Response> => {
   try {
     const limit: number = parseInt(req.params.limit);
-    const result = await limitCartResultService(limit);
+    const result: ICart[] = await limitCartResultService(limit);
     return res.status(200).json({
       msg: "products fetch successfully with limitations",
       data: result,
@@ -161,7 +158,7 @@ const getCartInDateRangeController = async (
   try {
     const startDate: string = req.body.startDate;
     const endDate: string = req.body.endDate;
-    const cart = await getCartInDateRangeService(startDate, endDate);
+    const cart: ICart[] = await getCartInDateRangeService(startDate, endDate);
     return res.status(200).json({
       msg: "fetch carts successfully",
       data: [cart],
@@ -180,5 +177,5 @@ export {
   updateCartController,
   deleteCartController,
   getUserCartsController,
-  getCartInDateRangeController
+  getCartInDateRangeController,
 };

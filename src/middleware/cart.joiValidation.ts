@@ -50,7 +50,7 @@ function validateSortValRequest(
 }
 
 export {
-    validateCreateCartRequest,
+  validateCreateCartRequest,
   validateIdRequest,
   validateLimitRequest,
   validateSortValRequest,

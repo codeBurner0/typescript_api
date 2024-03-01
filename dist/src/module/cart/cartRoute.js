@@ -9,9 +9,11 @@ const cartContoller_1 = require("./cartContoller");
 const cart_joiValidation_1 = require("../../middleware/cart.joiValidation");
 // import { validateCreateProductRequest } from "../../middleware/product.joiValidation";
 const auth_1 = require("../../middleware/auth");
+const rateLimit_1 = __importDefault(require("../../middleware/rateLimit"));
 const router = express_1.default.Router();
 router.use(express_1.default.json());
 router.use(cors_1.default());
+router.use(rateLimit_1.default);
 router.use(auth_1.authMiddleware);
 // TESTING ROUTE
 router.get("/", (req, res) => {
