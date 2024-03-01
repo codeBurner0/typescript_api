@@ -4,6 +4,7 @@ import {
   getAllUserService,
   getUserService,
 } from "./userService";
+import { IUser, userInterface } from "./userInterface";
 
 // ADD USER CONTROLLER
 const addUserController = async (
@@ -11,8 +12,8 @@ const addUserController = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const body = req.body;
-    const user = await addUserService(body);
+    const body: userInterface = req.body;
+    const user:string = await addUserService(body);
     return res
       .status(201)
       .json({ msg: "user create successfully", data: user });
@@ -27,7 +28,7 @@ const getAllUserController = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const user = await getAllUserService();
+    const user:IUser[] | null= await getAllUserService();
     return res
       .status(200)
       .json({ msg: "all users fetch successfully", data: user });
@@ -43,7 +44,7 @@ const getUserController = async (
 ): Promise<Response> => {
   try {
     const id = req.params.id;
-    const user = await getUserService(id);
+    const user :IUser | null= await getUserService(id);
     if (user === null) {
       return res.status(400).json({ msg: "no user found", data: user });
     }

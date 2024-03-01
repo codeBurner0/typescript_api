@@ -5,4 +5,10 @@ interface userInterface extends Document {
   password: string;
 }
 
-export { userInterface };
+type IUser = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export { userInterface ,IUser};

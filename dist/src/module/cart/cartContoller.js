@@ -48,7 +48,6 @@ exports.getSingleCartController = getSingleCartController;
 const getUserCartsController = async (req, res) => {
     try {
         const id = req.userId;
-        console.log(id);
         const cart = await cartService_1.getUserCartsService(id);
         if (!cart) {
             return res.status(200).json({ msg: "no cart found", data: cart });
