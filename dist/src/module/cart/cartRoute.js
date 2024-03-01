@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const cartContoller_1 = require("./cartContoller");
+const cart_joiValidation_1 = require("../../middleware/cart.joiValidation");
 // import { validateCreateProductRequest } from "../../middleware/product.joiValidation";
 const auth_1 = require("../../middleware/auth");
 const router = express_1.default.Router();
@@ -17,7 +18,7 @@ router.get("/", (req, res) => {
     res.send("Hello World from Cart Side");
 });
 // POST API ENDPOINT
-router.post("/", cartContoller_1.addCartController);
+router.post("/", cart_joiValidation_1.validateCreateCartRequest, cartContoller_1.addCartController);
 // GET SINGLE USER ENDPOINT
 router.get("/all", cartContoller_1.getAllCartController);
 // GET USER CARTS ENDPOINT
@@ -25,13 +26,13 @@ router.get("/user", cartContoller_1.getUserCartsController);
 // GET USER CARTS IN DATE RANGE ENDPOINT
 router.get("/dates", cartContoller_1.getCartInDateRangeController);
 // GET CARTS BY LIMIT API ENDPOINT
-router.get("/limit/:limit", cartContoller_1.limitCartResultController);
+router.get("/limit/:limit", cart_joiValidation_1.validateLimitRequest, cartContoller_1.limitCartResultController);
 // SORT ITEMS API ENDPOINT
-router.get("/sort/:sortVal", cartContoller_1.sortCartController);
+router.get("/sort/:sortVal", cart_joiValidation_1.validateSortValRequest, cartContoller_1.sortCartController);
 // UPDTATE CART ENDPOINT
-router.put("/:id", cartContoller_1.updateCartController);
-// UPDTATE CART ENDPOINT
-router.delete("/:id", cartContoller_1.deleteCartController);
+router.put("/:id", cart_joiValidation_1.validateIdRequest, cartContoller_1.updateCartController);
+// DELETE CART ENDPOINT
+router.delete("/:id", cart_joiValidation_1.validateIdRequest, cartContoller_1.deleteCartController);
 // GET SINGLE CART ENDPOINT
-router.get("/:id", cartContoller_1.getSingleCartController);
+router.get("/:id", cart_joiValidation_1.validateIdRequest, cartContoller_1.getSingleCartController);
 exports.default = router;

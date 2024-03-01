@@ -61,11 +61,13 @@ const deleteCartService = (id: string) => {
 };
 
 // DELETE CART SERVICE
-const getCartInDateRangeService = (startDate: string,endDate:string): Promise<cartInterface[]> => {
-    return Cart.find({
-      date: { $gte: startDate, $lte: endDate }
-    });
-
+const getCartInDateRangeService = (
+  startDate: string,
+  endDate: string
+): Promise<cartInterface[]> => {
+  return Cart.find({
+    date: { $gte: startDate, $lte: endDate },
+  });
 };
 
 export {
@@ -77,9 +79,8 @@ export {
   updateCartService,
   deleteCartService,
   getUserCartsService,
-  getCartInDateRangeService
+  getCartInDateRangeService,
 };
-
 
 // CPU BOUND
 // try {

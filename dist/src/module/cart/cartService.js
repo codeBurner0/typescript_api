@@ -62,7 +62,7 @@ exports.deleteCartService = deleteCartService;
 // DELETE CART SERVICE
 const getCartInDateRangeService = (startDate, endDate) => {
     return cartModel_1.default.find({
-        date: { $gte: startDate, $lte: endDate }
+        date: { $gte: startDate, $lte: endDate },
     });
 };
 exports.getCartInDateRangeService = getCartInDateRangeService;

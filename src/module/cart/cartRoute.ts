@@ -11,6 +11,12 @@ import {
   sortCartController,
   updateCartController,
 } from "./cartContoller";
+import {
+  validateCreateCartRequest,
+  validateIdRequest,
+  validateSortValRequest,
+  validateLimitRequest,
+} from "../../middleware/cart.joiValidation";
 
 // import { validateCreateProductRequest } from "../../middleware/product.joiValidation";
 import { authMiddleware } from "../../middleware/auth";
@@ -27,7 +33,7 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 // POST API ENDPOINT
-router.post("/", addCartController);
+router.post("/", validateCreateCartRequest, addCartController);
 
 // GET SINGLE USER ENDPOINT
 router.get("/all", getAllCartController);
@@ -39,20 +45,18 @@ router.get("/user", getUserCartsController);
 router.get("/dates", getCartInDateRangeController);
 
 // GET CARTS BY LIMIT API ENDPOINT
-router.get("/limit/:limit", limitCartResultController);
+router.get("/limit/:limit", validateLimitRequest, limitCartResultController);
 
 // SORT ITEMS API ENDPOINT
-router.get("/sort/:sortVal", sortCartController);
+router.get("/sort/:sortVal", validateSortValRequest, sortCartController);
 
 // UPDTATE CART ENDPOINT
-router.put("/:id", updateCartController);
+router.put("/:id", validateIdRequest, updateCartController);
 
-// UPDTATE CART ENDPOINT
-router.delete("/:id", deleteCartController);
+// DELETE CART ENDPOINT
+router.delete("/:id", validateIdRequest, deleteCartController);
 
 // GET SINGLE CART ENDPOINT
-router.get("/:id", getSingleCartController);
+router.get("/:id", validateIdRequest, getSingleCartController);
 
 export default router;
-
-
