@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
+import { Document } from "mongoose";
 import User from "./userModel";
 import { userInterface } from "./userInterface";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { userSchema } from "./userJoiSchema";
 
 // CREATE ITEM SERVICE
 const addUserService = async (body: userInterface): Promise<string> => {
@@ -12,7 +12,7 @@ const addUserService = async (body: userInterface): Promise<string> => {
     $and: [{ email }, { name }],
   });
   if (existingUser) {
-    return "User already exists";
+    throw "User already exists";
   }
 
   const salt: string = await bcrypt.genSalt(10);
@@ -32,13 +32,13 @@ const addUserService = async (body: userInterface): Promise<string> => {
 };
 
 // GET ALL USERS SERVICE
-const getAllUserService = (body: userInterface): Object => {
-  return User.findOne({});
+const getAllUserService = async (): Promise<userInterface[] | null> => {
+  return  User.find({});
 };
 
-// GET ALL USER SERVICE
-const getUserService = (id: string): Object => {
-  return User.findOne({ _id: id });
+// GET SINGLE USER SERVICE
+const getUserService = async (id: string): Promise<userInterface | null> => {
+  return  User.findOne({ _id: id });
 };
 
 export { addUserService, getAllUserService, getUserService };

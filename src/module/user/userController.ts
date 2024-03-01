@@ -27,8 +27,7 @@ const getAllUserController = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const body = req.body;
-    const user = await getAllUserService(body);
+    const user = await getAllUserService();
     return res
       .status(200)
       .json({ msg: "all users fetch successfully", data: user });
@@ -45,8 +44,8 @@ const getUserController = async (
   try {
     const id = req.params.id;
     const user = await getUserService(id);
-    if(user===null){
-      return res.status(400).json({ msg: "no user found", data: user })
+    if (user === null) {
+      return res.status(400).json({ msg: "no user found", data: user });
     }
     return res.status(200).json({ msg: "user fetch successfully", data: user });
   } catch (err: any) {

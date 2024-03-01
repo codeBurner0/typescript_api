@@ -1,6 +1,5 @@
-
 import {Document} from 'mongoose'
-interface FakeStoreInterface  extends Document{
+interface productInterface  extends Document{
   title: string;
   price: number;
   description: string;
@@ -16,4 +15,4 @@ interface addProductInterface{
   category:string
 }
 
-export { FakeStoreInterface, addProductInterface };
+export { productInterface, addProductInterface };

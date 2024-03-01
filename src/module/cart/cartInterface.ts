@@ -5,10 +5,18 @@ interface Product {
   quantity: number;
 }
 
-interface cartInterface extends Document {
-  userId: number;
+interface Date {
   date: Date;
+}
+
+interface cartInterface extends Document {
+  userId: string;
   products: Product[];
 }
 
-export { cartInterface };
+type ICart = {
+  userId: string | undefined;
+  products: Product[];
+};
+
+export { cartInterface, ICart,Date };

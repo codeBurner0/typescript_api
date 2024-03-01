@@ -1,7 +1,7 @@
 import mongoose, { Schema, Model } from "mongoose";
-import { FakeStoreInterface } from "./productInterface";
+import { productInterface } from "./productInterface";
 
-interface FakeStoreDocument extends FakeStoreInterface {}
+interface FakeStoreDocument extends productInterface {}
 
 const FakeStoreSchema: Schema<FakeStoreDocument> = new Schema({
   title: { type: String, required: true },

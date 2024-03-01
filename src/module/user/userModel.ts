@@ -15,9 +15,3 @@ const UserModel: Model<userDocument> = mongoose.model<userDocument>(
 );
 
 export default UserModel;
-
-
-
-
-
-

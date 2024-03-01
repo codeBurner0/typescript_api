@@ -4,13 +4,13 @@ import {
   numberValidateSchema,
   stringValidateSchema,
 } from "./productJoiValidator";
-import FakeStore from "./productModel";
-import { FakeStoreInterface, addProductInterface } from "./productInterface";
+import Product from "./productModel";
+import { productInterface, addProductInterface } from "./productInterface";
 
 // CREATE ITEM SERVICE
 const addProductService = (body: addProductInterface) => {
   try {
-    const newProduct = new FakeStore(body);
+    const newProduct = new Product(body);
     return newProduct.save();
   } catch (error: any) {
     const msg = error.message;
@@ -21,7 +21,7 @@ const addProductService = (body: addProductInterface) => {
 // GET SINGLE ITEM SERVICE
 const getSingleProductService = (id: string) => {
   try {
-    return FakeStore.findById(id);
+    return Product.findById(id);
   } catch (err: any) {
     const msg = err.message;
     return msg;
@@ -31,7 +31,7 @@ const getSingleProductService = (id: string) => {
 // LIMIT RESULT API
 const limitResultService = async (limit: number) => {
   try {
-    return FakeStore.find().limit(limit);
+    return Product.find().limit(limit);
   } catch (error) {
     const msg = error;
     return msg;
@@ -42,7 +42,7 @@ const limitResultService = async (limit: number) => {
 const sortService = async (sortVal: string) => {
   try {
     const sortOrder = sortVal === "asc" ? 1 : -1;
-    return FakeStore.find()
+    return Product.find()
       .select({ price: 1 })
       .sort({ price: sortOrder })
       .exec();
@@ -55,7 +55,7 @@ const sortService = async (sortVal: string) => {
 // GET ALL CATEGORIES SERVICE
 const getAllCategoryService = async () => {
   try {
-    const categories = await FakeStore.aggregate([
+    const categories = await Product.aggregate([
       { $group: { _id: "$category" } },
       { $project: { _id: 0, category: "$_id" } },
     ]);
@@ -71,7 +71,7 @@ const getAllCategoryService = async () => {
 // GET ITEMS BY CATEGORIES SERVICE
 const getProductByCategoryService = (category: string) => {
   try {
-    return FakeStore.find({ category: category });
+    return Product.find({ category: category });
   } catch (error) {
     const msg = error;
     return msg;
@@ -81,7 +81,7 @@ const getProductByCategoryService = (category: string) => {
 // UPDATE AN ITEM SERVICE
 const updateProductService = (id: string, body: addProductInterface) => {
   try {
-    return FakeStore.updateOne<FakeStoreInterface>({ _id: id }, { $set: body });
+    return Product.updateOne({ _id: id }, { $set: body });
   } catch (error) {
     const msg = error;
     return msg;
@@ -91,7 +91,7 @@ const updateProductService = (id: string, body: addProductInterface) => {
 // DELETE ITEMS SERVICE
 const deleteProductService = (id: string) => {
   try {
-    return FakeStore.findByIdAndDelete(id);
+    return Product.findByIdAndDelete(id);
   } catch (error) {
     const msg = error;
     return msg;

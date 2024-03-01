@@ -1,61 +1,56 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import {
-  addProductController,
-  deleteProductController,
-  getAllCategoryController,
-  getProductByCategoryController,
-  getSingleProductController,
-  limitResultController,
-  sortController,
-  updateItemController,
+  addCartController,
+  deleteCartController,
+  getAllCartController,
+  getCartInDateRangeController,
+  getSingleCartController,
+  getUserCartsController,
+  limitCartResultController,
+  sortCartController,
+  updateCartController,
 } from "./cartContoller";
 
-import {
-  validateCreateProductRequest,
-  validateIdRequest,
-  validateLimitRequest,
-  validateSortValRequest,
-  validateCategoryRequest,
-  validateUpdateProductRequest,
-} from "../../middleware/product.joiValidation";
+// import { validateCreateProductRequest } from "../../middleware/product.joiValidation";
+import { authMiddleware } from "../../middleware/auth";
 
 const router = express.Router();
 
 router.use(express.json());
 router.use(cors());
+router.use(authMiddleware);
 
 // TESTING ROUTE
 router.get("/", (req: Request, res: Response) => {
-  res.send("Hello World from Router Side");
+  res.send("Hello World from Cart Side");
 });
 
 // POST API ENDPOINT
-router.post("/", validateCreateProductRequest, addProductController);
+router.post("/", addCartController);
 
-// GET SINGLE ITEM API ENDPOINT
-router.get("/product/:id", validateIdRequest, getSingleProductController);
+// GET SINGLE USER ENDPOINT
+router.get("/all", getAllCartController);
 
-// GET SINGLE ITEM API ENDPOINT
-router.get("/limit/:limit", validateLimitRequest, limitResultController);
+// GET USER CARTS ENDPOINT
+router.get("/user", getUserCartsController);
+
+// GET USER CARTS IN DATE RANGE ENDPOINT
+router.get("/dates", getCartInDateRangeController);
+
+// GET CARTS BY LIMIT API ENDPOINT
+router.get("/limit/:limit", limitCartResultController);
 
 // SORT ITEMS API ENDPOINT
-router.get("/sort/:sortVal", validateSortValRequest, sortController);
+router.get("/sort/:sortVal", sortCartController);
 
-// GET ALL CATEGORIES ENDPOINT
-router.get("/cate", getAllCategoryController);
+// UPDTATE CART ENDPOINT
+router.put("/:id", updateCartController);
 
-// GET ALL CATEGORIES ENDPOINT
-router.get(
-  "/cate/:cat",
-  validateCategoryRequest,
-  getProductByCategoryController
-);
+// UPDTATE CART ENDPOINT
+router.delete("/:id", deleteCartController);
 
-// UPDTATE ITEMS ENDPOINT
-router.put("/:id", validateUpdateProductRequest, updateItemController);
-
-// UPDTATE ITEMS ENDPOINT
-router.delete("/:id", validateIdRequest, deleteProductController);
+// GET SINGLE CART ENDPOINT
+router.get("/:id", getSingleCartController);
 
 export default router;

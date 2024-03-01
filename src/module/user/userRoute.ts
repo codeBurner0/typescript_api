@@ -8,7 +8,7 @@ import {
 
 import { validateAddUserRequest } from "../../middleware/user.joiValidation";
 import { validateIdRequest } from "../../middleware/product.joiValidation";
-import authMiddleware from "../../middleware/auth";
+import {authMiddleware} from "../../middleware/auth";
 
 const router = express.Router();
 
