@@ -13,7 +13,7 @@ const addUserController = async (
 ): Promise<Response> => {
   try {
     const body: userInterface = req.body;
-    const user:string = await addUserService(body);
+    const user: string = await addUserService(body);
     return res
       .status(201)
       .json({ msg: "user create successfully", data: user });
@@ -28,7 +28,7 @@ const getAllUserController = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const user:IUser[] | null= await getAllUserService();
+    const user: IUser[] | null = await getAllUserService();
     return res
       .status(200)
       .json({ msg: "all users fetch successfully", data: user });
@@ -44,7 +44,7 @@ const getUserController = async (
 ): Promise<Response> => {
   try {
     const id = req.params.id;
-    const user :IUser | null= await getUserService(id);
+    const user: IUser | null = await getUserService(id);
     if (user === null) {
       return res.status(400).json({ msg: "no user found", data: user });
     }
